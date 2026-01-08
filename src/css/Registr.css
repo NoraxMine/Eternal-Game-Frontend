@@ -1,0 +1,165 @@
+.registr_page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0a0719;
+  background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.registr_page::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.25) 0%, transparent 60%);
+  animation: neonWave 25s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.registr_page::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 80%, rgba(186, 85, 211, 0.15), transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(147, 112, 219, 0.15), transparent 50%);
+  animation: softPulse 10s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes neonWave {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  100% { transform: translate(30%, 30%) rotate(360deg); }
+}
+
+@keyframes softPulse {
+  0% { opacity: 0.4; }
+  100% { opacity: 0.7; }
+}
+
+.registr_container {
+  position: relative;
+  z-index: 1;
+  background: rgba(20, 15, 45, 0.85);
+  backdrop-filter: blur(15px);
+  padding: 50px 60px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(138, 43, 226, 0.2);
+  text-align: center;
+  max-width: 420px;
+  width: 90%;
+  animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.registr_title {
+  font-size: 38px;
+  font-weight: bold;
+  color: #e6d9ff;
+  margin-bottom: 30px;
+  text-shadow: 0 0 15px rgba(138, 43, 226, 0.4);
+}
+
+.registr_error {
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 107, 107, 0.2);
+  font-size: 15px;
+}
+
+.registr_form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.registr_input {
+  padding: 16px 20px;
+  border: 2px solid rgba(138, 43, 226, 0.3);
+  border-radius: 12px;
+  background: rgba(30, 25, 60, 0.6);
+  color: #e6d9ff;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.registr_input::placeholder {
+  color: rgba(200, 180, 255, 0.6);
+}
+
+.registr_input:focus {
+  border-color: #ba55d3;
+  background: rgba(40, 35, 80, 0.7);
+  box-shadow: 0 0 15px rgba(186, 85, 211, 0.3);
+}
+
+.registr_button {
+  padding: 16px;
+  background: #8a2be2;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+  margin-top: 10px;
+}
+
+.registr_button:hover {
+  background: #9932cc;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(138, 43, 226, 0.6);
+}
+
+.registr_button:active {
+  transform: translateY(0);
+}
+
+.registr_button:disabled {
+  background: #555;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.registr_links {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.registr_login_link {
+  color: #ba55d3;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.registr_login_link:hover {
+  color: #da70d6;
+  text-shadow: 0 0 10px rgba(186, 85, 211, 0.3);
+}
