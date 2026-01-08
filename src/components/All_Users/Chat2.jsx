@@ -10,10 +10,8 @@ function Chat2({ currentUser }) {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-  const [avatars, setAvatars] = useState({}); 
+  const [avatars, setAvatars] = useState({});
   const chatContainerRef = useRef(null);
-
-  const STORAGE_KEY = `active_chats_${currentUser?.id || 'guest'}`;
 
   useEffect(() => {
     if (!currentUser) {
@@ -21,22 +19,22 @@ function Chat2({ currentUser }) {
       return;
     }
 
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        setChatPartners(parsed);
-      } catch (e) {
-        setChatPartners([]);
-      }
-    }
-  }, [currentUser]);
+    const loadActiveChats = () => {
+      fetch("https://back-305q.onrender.com/api/active_chats", {
+        headers: { "X-User-ID": currentUser.id.toString() }
+      })
+        .then(res => res.json())
+        .then(data => {
+          setChatPartners(data.users || []);
+        })
+        .catch(err => console.error("Ошибка загрузки активных чатов:", err));
+    };
 
-  useEffect(() => {
-    if (currentUser && chatPartners.length > 0) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(chatPartners));
-    }
-  }, [chatPartners, currentUser]);
+    loadActiveChats();
+    const interval = setInterval(loadActiveChats, 5000); 
+
+    return () => clearInterval(interval);
+  }, [currentUser]);
 
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
@@ -80,9 +78,7 @@ function Chat2({ currentUser }) {
 
   const getAvatarSrc = async (userId) => {
     const cached = localStorage.getItem(`avatar_${userId}`);
-    if (cached) {
-      return cached;
-    }
+    if (cached) return cached;
 
     try {
       const res = await fetch(`https://back-305q.onrender.com/api/profile/${userId}`);
@@ -94,10 +90,7 @@ function Chat2({ currentUser }) {
           return src;
         }
       }
-    } catch (err) {
-      console.error(`Ошибка загрузки аватара для пользователя ${userId}:`, err);
-    }
-
+    } catch {}
     return DEFAULT_AVATAR_SRC;
   };
 
@@ -145,11 +138,6 @@ function Chat2({ currentUser }) {
             container.scrollTop = container.scrollHeight;
           }
         }, 100);
-
-        if (!chatPartners.find(p => p.id === selectedUser.id)) {
-          const updated = [...chatPartners, selectedUser];
-          setChatPartners(updated);
-        }
       })
       .catch(err => {
         console.error("Ошибка отправки:", err);
@@ -161,6 +149,10 @@ function Chat2({ currentUser }) {
       e.preventDefault();
       handleSend();
     }
+  };
+
+  const handleUserClick = (user) => {
+    setSelectedUser(user);
   };
 
   const displayedUsers = searchQuery.trim() ? searchResults : chatPartners;
@@ -177,7 +169,7 @@ function Chat2({ currentUser }) {
             <ul>
               {displayedUsers.length > 0 ? (
                 displayedUsers.map((u, index) => (
-                  <li key={u.id} className={`chat_user_item ${selectedUser?.id === u.id ? "active" : ""}`} onClick={() => setSelectedUser(u)} style={{ animationDelay: `${index * 0.1}s` }}>
+                  <li key={u.id} className={`chat_user_item ${selectedUser?.id === u.id ? "active" : ""}`} onClick={() => handleUserClick(u)} style={{ animationDelay: `${index * 0.1}s` }}>
                     <div className="user_avatar">
                       <img src={avatars[u.id] || DEFAULT_AVATAR_SRC} alt="avatar" />
                     </div>
