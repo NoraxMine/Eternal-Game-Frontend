@@ -18,7 +18,7 @@ function Download({ currentUser }) {
   useEffect(() => {
     const load = async () => {
       try {
-        const res = await fetch("https://back-305q.onrender.com/api/downloads");
+        const res = await fetch("http://127.0.0.1:8000/api/downloads");
         const data = await res.json();
         setDownloads(data);
         setFilteredDownloads(data);
@@ -89,7 +89,7 @@ function Download({ currentUser }) {
     if (editFile) formData.append("file", editFile);
 
     try {
-      const res = await fetch("https://back-305q.onrender.com/api/downloads", {
+      const res = await fetch("http://127.0.0.1:8000/api/downloads", {
         method: "POST",
         body: formData,
       });
@@ -97,7 +97,7 @@ function Download({ currentUser }) {
         const error = await res.text();
         throw new Error(error || "Ошибка сервера");
       }
-      const updatedRes = await fetch("https://back-305q.onrender.com/api/downloads");
+      const updatedRes = await fetch("http://127.0.0.1:8000/api/downloads");
       const updatedData = await updatedRes.json();
       setDownloads(updatedData);
       setFilteredDownloads(updatedData);
@@ -114,7 +114,7 @@ function Download({ currentUser }) {
       return;
     }
     try {
-      const res = await fetch(`https://back-305q.onrender.com/api/downloads/${id}`, {
+      const res = await fetch(`http://127.0.0.1:8000/api/downloads/${id}`, {
         method: "DELETE",
       });
       if (!res.ok) throw new Error("Ошибка удаления");

@@ -2,7 +2,7 @@
   "name": "project_m",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://NoraxMine.github.io/gobra/",
+  "homepage": "https://NoraxMine.github.io/Eternal-Game-Frontend/",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",

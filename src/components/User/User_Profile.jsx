@@ -12,7 +12,7 @@ function User_Profile({ user }) {
   useEffect(() => {
     if (!user?.id) return;
 
-    fetch(`https://back-305q.onrender.com/api/profile/${user.id}`)
+    fetch(`http://127.0.0.1:8000/api/profile/${user.id}`)
       .then(res => res.json())
       .then(data => {
         setAbout(data.about || "");
@@ -67,7 +67,7 @@ function User_Profile({ user }) {
     if (selectedBigImage) formData.append("image", selectedBigImage);
 
     try {
-      const response = await fetch(`https://back-305q.onrender.com/api/profile/${user.id}`, {
+      const response = await fetch(`http://127.0.0.1:8000/api/profile/${user.id}`, {
         method: "POST",
         body: formData,
       });

@@ -20,7 +20,7 @@ function Chat2({ currentUser }) {
     }
 
     const loadActiveChats = () => {
-      fetch("https://back-305q.onrender.com/api/active_chats", {
+      fetch("http://127.0.0.1:8000/api/active_chats", {
         headers: { "X-User-ID": currentUser.id.toString() }
       })
         .then(res => res.json())
@@ -39,7 +39,7 @@ function Chat2({ currentUser }) {
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
       if (searchQuery.trim() && currentUser) {
-        fetch(`https://back-305q.onrender.com/api/search_users?query=${encodeURIComponent(searchQuery)}`)
+        fetch(`http://127.0.0.1:8000/api/search_users?query=${encodeURIComponent(searchQuery)}`)
           .then(res => res.json())
           .then(data => {
             setSearchResults(data.filter(u => u.id !== currentUser.id));
@@ -60,7 +60,7 @@ function Chat2({ currentUser }) {
     }
 
     const loadMessages = () => {
-      fetch(`https://back-305q.onrender.com/api/chat/${selectedUser.id}`, {
+      fetch(`http://127.0.0.1:8000/api/chat/${selectedUser.id}`, {
         headers: { "X-User-ID": currentUser.id.toString() }
       })
         .then(res => res.json())
@@ -81,7 +81,7 @@ function Chat2({ currentUser }) {
     if (cached) return cached;
 
     try {
-      const res = await fetch(`https://back-305q.onrender.com/api/profile/${userId}`);
+      const res = await fetch(`http://127.0.0.1:8000/api/profile/${userId}`);
       if (res.ok) {
         const data = await res.json();
         if (data.avatar_base64) {
@@ -119,7 +119,7 @@ function Chat2({ currentUser }) {
 
     const textToSend = inputValue.trim();
 
-    fetch(`https://back-305q.onrender.com/api/chat/${selectedUser.id}`, {
+    fetch(`http://127.0.0.1:8000/api/chat/${selectedUser.id}`, {
       method: "POST",
       headers: {
         "X-User-ID": currentUser.id.toString(),

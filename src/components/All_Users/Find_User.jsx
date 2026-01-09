@@ -26,7 +26,7 @@ function Find_User() {
 
     try {
       const response = await fetch(
-        `https://back-305q.onrender.com/api/search_users?query=${encodeURIComponent(query)}`
+        `http://127.0.0.1:8000/api/search_users?query=${encodeURIComponent(query)}`
       );
 
       if (!response.ok) {
@@ -45,7 +45,7 @@ function Find_User() {
         }
 
         try {
-          const profileRes = await fetch(`https://back-305q.onrender.com/api/profile/${user.id}`);
+          const profileRes = await fetch(`http://127.0.0.1:8000/api/profile/${user.id}`);
           if (profileRes.ok) {
             const profileData = await profileRes.json();
             if (profileData.avatar_base64) {

@@ -29,7 +29,7 @@ function Profile({ currentUser }) {
     const owner = currentUser.id === targetId;
     setIsOwner(owner);
 
-    fetch(`https://back-305q.onrender.com/api/profile/${targetId}`)
+    fetch(`http://127.0.0.1:8000/api/profile/${targetId}`)
       .then(res => {
         if (!res.ok) throw new Error("Профиль не найден");
         return res.json();
@@ -93,7 +93,7 @@ function Profile({ currentUser }) {
     if (selectedBigImage) formData.append("image", selectedBigImage);
 
     try {
-      const res = await fetch(`https://back-305q.onrender.com/api/profile/${currentUser.id}`, {
+      const res = await fetch(`http://127.0.0.1:8000/api/profile/${currentUser.id}`, {
         method: "POST",
         headers: {
           "X-User-ID": currentUser.id.toString(),
