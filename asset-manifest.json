@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/Eternal-Game-Frontend/static/css/main.fa14349d.css",
-    "main.js": "/Eternal-Game-Frontend/static/js/main.f5fc6162.js",
-    "static/js/453.98ea3407.chunk.js": "/Eternal-Game-Frontend/static/js/453.98ea3407.chunk.js",
+    "main.css": "/Eternal-Game-Frontend/static/css/main.41fec8c9.css",
+    "main.js": "/Eternal-Game-Frontend/static/js/main.d1d38c29.js",
+    "static/js/317.f453e13f.chunk.js": "/Eternal-Game-Frontend/static/js/317.f453e13f.chunk.js",
     "static/media/big_logo.png": "/Eternal-Game-Frontend/static/media/big_logo.fa1a33e4c7913c4c6aae.png",
     "static/media/logo.jpg": "/Eternal-Game-Frontend/static/media/logo.6d0bf16ac1be7bd0426e.jpg",
     "index.html": "/Eternal-Game-Frontend/index.html",
-    "main.fa14349d.css.map": "/Eternal-Game-Frontend/static/css/main.fa14349d.css.map",
-    "main.f5fc6162.js.map": "/Eternal-Game-Frontend/static/js/main.f5fc6162.js.map",
-    "453.98ea3407.chunk.js.map": "/Eternal-Game-Frontend/static/js/453.98ea3407.chunk.js.map"
+    "main.41fec8c9.css.map": "/Eternal-Game-Frontend/static/css/main.41fec8c9.css.map",
+    "main.d1d38c29.js.map": "/Eternal-Game-Frontend/static/js/main.d1d38c29.js.map",
+    "317.f453e13f.chunk.js.map": "/Eternal-Game-Frontend/static/js/317.f453e13f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fa14349d.css",
-    "static/js/main.f5fc6162.js"
+    "static/css/main.41fec8c9.css",
+    "static/js/main.d1d38c29.js"
   ]
 }
